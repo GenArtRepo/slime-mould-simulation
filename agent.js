@@ -37,10 +37,6 @@ class Agent{
         n_pos = this.borders_format(n_pos);
 
         // If the agent doesn't move
-
-        try{grid[n_pos.x][n_pos.y]==1}
-        catch(error){console.log(n_pos.x,n_pos.y)}
-
         if(grid[n_pos.x][n_pos.y]==1 | (n_pos.x == this.pos.x & n_pos.y == this.pos.y)){
             this.vel = p5.Vector.fromAngle(radians(random(-180, 180)));
             return false;
@@ -58,25 +54,22 @@ class Agent{
         var front_sensor = p5.Vector.add(this.pos, sensor);
         front_sensor = this.floor_vector(front_sensor);
         front_sensor = this.borders_format(front_sensor);
-        try {var F = grid[front_sensor.x][front_sensor.y];}
-        catch(error){console.log(front_sensor.x, front_sensor.y)}
+        var F = grid[front_sensor.x][front_sensor.y];
         
         
         //Rigth Sensor
-        var right_sensor = p5.Vector.add(this.pos, p5.Vector.rotate(sensor, this.sensor_angle)); 
+        var right_sensor = p5.Vector.add(this.pos,
+                                p5.Vector.rotate(sensor, this.sensor_angle)); 
         right_sensor = this.floor_vector(right_sensor);
         right_sensor = this.borders_format(right_sensor);
-        
-        try {var FR = grid[right_sensor.x][right_sensor.y];}
-        catch(error){console.log(right_sensor.x, right_sensor.y)}
+        var FR = grid[right_sensor.x][right_sensor.y];
 
 
         //Left Sensor
-        var left_sensor = p5.Vector.add(this.pos, p5.Vector.rotate(sensor, -this.sensor_angle));
+        var left_sensor = p5.Vector.add(this.pos, 
+                                p5.Vector.rotate(sensor, -this.sensor_angle));
         left_sensor = this.borders_format(left_sensor);
-
-        try {var FL = grid[floor(left_sensor.x)][floor(left_sensor.y)]; }
-        catch(error){console.log(left_sensor.x, left_sensor.y)}
+        var FL = grid[floor(left_sensor.x)][floor(left_sensor.y)]; 
 
 
         if(F > FL & F > FR) return;
