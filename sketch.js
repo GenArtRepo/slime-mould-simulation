@@ -58,7 +58,7 @@ let settings = {
 	Play: function(){ play=true; },
 	Pause: function(){ play=false; },
 	Reset: function(){ init()},
-	p: 5,
+	p: 9,
   };
 
 function gui(){
@@ -77,7 +77,9 @@ function setup() {
 	background(255);
 	pixelDensity(1);
 
-	n = floor(width*height*settings.p/100);
+	// frameRate(1);
+
+	n = round(width*height*settings.p/100);
 
 	init();
 }
