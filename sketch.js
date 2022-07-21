@@ -49,7 +49,7 @@
 * 
 */
 
-
+let play = true;
 let n;
 let decayT = 0.1;
 
@@ -89,7 +89,8 @@ function init(){
 }
 
 function draw() {
-	background(255);
-	map_.compute();
-	map_.render();
+	if (play){
+		map_.compute();
+		map_.render();
+	}
 }
